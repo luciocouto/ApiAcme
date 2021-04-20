@@ -21,10 +21,8 @@
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.5.1" />
-    <PackageReference Include="System.Drawing.Common" Version="5.0.0-rc.1.20451.14" />
-    <PackageReference Include="TMS.FlexCel" Version="7.6.4-trial" />
-    <PackageReference Include="TMS.FlexCel.WebForms" Version="7.6.4-trial" />
-    <PackageReference Include="TMS.FlexCel.WinForms" Version="7.6.4-trial" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="TMS.FlexCel" Version="7.9.0-trial" />
   </ItemGroup>
 
   <ItemGroup>
