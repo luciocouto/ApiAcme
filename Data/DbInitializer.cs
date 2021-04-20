@@ -20,14 +20,14 @@ namespace ApiAcme.Data
 
             var students = new Authors[]
             {
-            new Authors{Id=6661 ,FirstName="EvilMinion1",LastName="Banana1",Email="evilMinion1@evilminion.com", Birthdate=DateTime.Parse("2005-09-01")},
-            new Authors{Id=6662 ,FirstName="EvilMinion2",LastName="Banana2",Email="evilMinion2@evilminion.com", Birthdate=DateTime.Parse("2002-09-01")},
-            new Authors{Id=6663 ,FirstName="EvilMinion3",LastName="Banana3",Email="evilMinion3@evilminion.com", Birthdate=DateTime.Parse("2003-09-01")},
-            new Authors{Id=6664 ,FirstName="EvilMinion4",LastName="Banana4",Email="evilMinion4@evilminion.com", Birthdate=DateTime.Parse("2002-09-01")},
-            new Authors{Id=6665 ,FirstName="EvilMinion5",LastName="Banana5",Email="evilMinion5@evilminion.com", Birthdate=DateTime.Parse("2002-09-01")},
-            new Authors{Id=6666 ,FirstName="EvilMinion6",LastName="Banana6",Email="evilMinion6@evilminion.com", Birthdate=DateTime.Parse("2001-09-01")},
-            new Authors{Id=6667 ,FirstName="EvilMinion7",LastName="Banana7",Email="evilMinion7@evilminion.com", Birthdate=DateTime.Parse("2003-09-01")},
-            new Authors{Id=6668 ,FirstName="EvilMinion8",LastName="Banana8",Email="evilMinion8@evilminion.com", Birthdate=DateTime.Parse("2005-09-01")}
+            new Authors{Id=6661 ,FirstName="EvilMinion1",LastName="Banana1",Email="evilMinion1@evilminion.com", Birthdate=DateTime.Parse("2005-09-01"), Added=DateTime.Parse("2005-09-01").ToShortDateString()},
+            new Authors{Id=6662 ,FirstName="EvilMinion2",LastName="Banana2",Email="evilMinion2@evilminion.com", Birthdate=DateTime.Parse("2002-09-01"), Added=DateTime.Parse("2005-09-01").ToShortDateString()},
+            new Authors{Id=6663 ,FirstName="EvilMinion3",LastName="Banana3",Email="evilMinion3@evilminion.com", Birthdate=DateTime.Parse("2003-09-01"), Added=DateTime.Parse("2005-09-01").ToShortDateString()},
+            new Authors{Id=6664 ,FirstName="EvilMinion4",LastName="Banana4",Email="evilMinion4@evilminion.com", Birthdate=DateTime.Parse("2002-09-01"), Added=DateTime.Parse("2005-09-01").ToShortDateString()},
+            new Authors{Id=6665 ,FirstName="EvilMinion5",LastName="Banana5",Email="evilMinion5@evilminion.com", Birthdate=DateTime.Parse("2002-09-01"), Added=DateTime.Parse("2005-09-01").ToShortDateString()},
+            new Authors{Id=6666 ,FirstName="EvilMinion6",LastName="Banana6",Email="evilMinion6@evilminion.com", Birthdate=DateTime.Parse("2001-09-01"), Added=DateTime.Parse("2005-09-01").ToShortDateString()},
+            new Authors{Id=6667 ,FirstName="EvilMinion7",LastName="Banana7",Email="evilMinion7@evilminion.com", Birthdate=DateTime.Parse("2003-09-01"), Added=DateTime.Parse("2005-09-01").ToShortDateString()},
+            new Authors{Id=6668 ,FirstName="EvilMinion8",LastName="Banana8",Email="evilMinion8@evilminion.com", Birthdate=DateTime.Parse("2005-09-01"), Added=DateTime.Parse("2005-09-01").ToShortDateString()}
             };
 
             foreach (Authors s in students)
