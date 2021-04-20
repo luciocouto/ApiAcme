@@ -27,7 +27,3 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
-
-
-Para rodar a apicação basta criar no SqlServer uma database com um usuario, alterar a conexão no appsettings.json e rodar o script de criação de tabelas e depois rodar a aplicação.
-Ao iniciar a aplicação ela irá verificar se a tabela de Authors tem algum registro, senão ela vai popular as tabelas com alguns registros.

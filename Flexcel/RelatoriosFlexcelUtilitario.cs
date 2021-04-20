@@ -43,7 +43,7 @@ namespace ApiAcme.Flexcel
 
         private void SetReport<T>(IList<T> aLista, string NomeFonte)
         {
-            Report.SetValue("Empresa", "LCorp S.A.");
+            Report.SetValue("Empresa", "SINQIA S.A.");
             Report.SetValue("PaginaXdeY", string.Empty);
             Report.SetValue("DataSistema", DateTime.Now.ToShortDateString());
 

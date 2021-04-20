@@ -12,7 +12,6 @@ using ApiAcme.Flexcel;
 using ApiAcme.Models;
 using FlexCel.Core;
 using FlexCel.XlsAdapter;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,7 +37,6 @@ namespace ApiAcme.Controllers
         /// <param name="pageNumber">número da pagina</param>
         /// <param name="pageSize">Qtde itens por paginação</param>
         /// <returns></returns>
-        [Route("~/api/authors")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Authors>>> GetAuthors(SortOrderAuthorEnum sortOrder, string searchString, int? pageNumber, int? pageSize)
         {
@@ -90,7 +88,7 @@ namespace ApiAcme.Controllers
         }
 
         // GET: api/Authors/5
-        [HttpGet("~/api/authors/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Authors>> GetAuthors(int id)
         {
 
@@ -111,7 +109,7 @@ namespace ApiAcme.Controllers
         // PUT: api/Authors/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("~/api/authors/{id}")]
+        [HttpPut("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PutAuthors(int id, Authors authors)
         {
@@ -144,7 +142,7 @@ namespace ApiAcme.Controllers
         // POST: api/Authors
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost("~/api/authors")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult<Authors>> PostAuthors(Authors authors)
         {
@@ -173,8 +171,7 @@ namespace ApiAcme.Controllers
         /// Deletes a specific AuthorItem.
         /// </summary>
         /// <param name="id"></param>    
-      //  [HttpDelete("{id}")]
-        [HttpDelete("~/api/authors/{id}")]
+        [HttpDelete("{id}")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult<Authors>> DeleteAuthors(int id)
         {
@@ -202,7 +199,7 @@ namespace ApiAcme.Controllers
         /// <param name="typeReport">geração report em xlsx, pdf, html </param>
         /// <param name="sortOrder">ordenação por firstname, birthdate, asc e desc</param>
         /// <returns></returns>
-        [Route("~/api/flexcel_authors")]
+        [Route("~/api/ReportAuthors")]
         [HttpGet]
         public HttpResponseMessage GetReportAuthors(TypeReportEnum typeReport, SortOrderAuthorEnum sortOrder)
         {

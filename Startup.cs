@@ -16,13 +16,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
-using Microsoft.IdentityModel.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Microsoft.AspNetCore.Authentication;
-using ApiAcme.Utilitarios;
 
 namespace ApiAcme
 {
@@ -32,8 +25,6 @@ namespace ApiAcme
         {
             Configuration = configuration;
         }
-
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public IConfiguration Configuration { get; }
 
@@ -51,24 +42,14 @@ namespace ApiAcme
             });
 
             //evitar referencia circular de objetos, retorna apenas um nivel, evita o erro:
+            //System.Text.Json.JsonException: A possible object cycle was detected which is not supported. 
+            //This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32.
             services.AddControllers().AddNewtonsoftJson(opt =>
             {
-                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; 
             });
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            })
-            .AddCookie()
-            .AddOpenIdConnect(options =>
-            {
-                AdicionarOpenIdConnect(options);
-
-            });
-
+            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -80,7 +61,7 @@ namespace ApiAcme
                     Contact = new OpenApiContact
                     {
                         Name = "Lúcio Couto",
-                        Email = "lucio.couto@lcorp.com.br",
+                        Email = "lucio.couto@sinqia.com.br",
                         Url = new Uri("http://www.example.com"),
                     },
                     License = new OpenApiLicense
@@ -89,23 +70,24 @@ namespace ApiAcme
                         Url = new Uri("https://example.com/license"),
                     }
                 });
-            });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+          });
         }
-      
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();              
+                app.UseDeveloperExceptionPage();
             }
 
-
-            app.UseCors(MyAllowSpecificOrigins);
-
             app.UseRouting();
-            //app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseSwagger();
@@ -119,21 +101,6 @@ namespace ApiAcme
             {
                 endpoints.MapControllers();
             });
-        }
-
-        private void AdicionarOpenIdConnect(OpenIdConnectOptions options)
-        {
-            options.Authority = Configuration["Oidc:Authority"];
-
-            options.ClientId = Configuration["Oidc:ClientId"];
-            options.ClientSecret = Configuration["Oidc:ClientSecret"];
-            options.RequireHttpsMetadata = false;
-            options.GetClaimsFromUserInfoEndpoint = true;
-            options.SaveTokens = true;
-            options.RemoteSignOutPath = "/SignOut";
-            options.SignedOutRedirectUri = "Redirect-here";
-            // options.ResponseType = "code" 
-            options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
         }
     }
 }
